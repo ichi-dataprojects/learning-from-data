@@ -1,0 +1,82 @@
+---
+title: "Machine learning model"
+description: |
+  This posts provides the model which stakeholders can use to predict future outcome
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+**Building a multiple Linear Regression model**
+
+whereby
+
+Night mainland and night Zanzibar are the dependent variable to be modeled
+
+Total male and Total female are independent variables
+
+This the expected machine learning model or algorithm
+
+𝑦 =𝑤+𝑤𝑥 +𝑤𝑥 +𝑤𝑥 .……….wxn
+
+**Exploring relationships among features – the correlation matrix**
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+library(wesanderson)
+```
+
+```{r}
+setwd("D:\\setebe\\Data science\\2024\\Tourism\\learning-from-data")
+tz <- read.csv("Train.csv")
+attach(tz)
+```
+
+```{r}
+ cor(tz[c("total_female", "total_male", "night_mainland", "night_zanzibar")])
+```
+
+**Now lets Train the multiple linear regression model on the data**
+
+```{r}
+# Night mainland vs total_male+total_female + night_zanzibar
+mlm1 <- lm(night_mainland ~ total_male+total_female+night_zanzibar, data = tz)
+summary(mlm1)
+
+```
+
+
+|                | Coefficient | Standard Error | t-value | p-value         | R- square |
+|------------|------------|------------|------------|------------|------------|
+| Intercept      | 9.94944     | 0.14457        | 68.821  | \< 2e-16 \*\*\* | 0.01135   |
+| total_male     | -0.47005    | 0.08240        | -5.704  | 1.19e-08 \*\*\* |           |
+| total_female   | 0.35684     | 0.08645        | 4.128   | 3.68e-05 \*\*\* |           |
+| night_Zanzibar | -0.26841    | 0.01967        | -13.645 | \< 2e-16 \*\*\* |           |
+
+
+**Machine learning model for predicting future Night spent in Tanzania mainland will be**
+
+Night mainland = -0.47005(total_male) + 0.35684(total_female) -0.26841(night_Zanzibar) + 9.94944
+
+
+```{r}
+mlm2 <- lm(night_zanzibar ~ total_male+total_female+night_mainland, data = tz)
+summary(mlm2)
+```
+
+
+
+|                | Coefficient | Standard Error | t-value | p-value         | R- square |
+|---------------|-------------|---------------|----------|----------|----------|
+| Intercept      | 2.54493     | 0.05727        | 44.437  | \< 2e-16 \*\*\* | 0.01949   |
+| total_male     | -0.12526    | 0.03066        | -4.086  | 4.4e-05 \*\*\*  |           |
+| total_female   | 0.44038     | 0.03200        | 13.762  | \< 2e-16 \*\*\* |           |
+| night_mainland | -0.03712    | 0.00272        | -13.645 | \< 2e-16 \*\*\* |           |
+
+**Machine learning model for predicting future Night spent in Zanzibar will be**
+
+Night Zanzibar = -0.12526(total_male) + 0.44038(total_female) -0.03712(night_Zanzibar) + 2.54493
+

@@ -1,0 +1,27 @@
+---
+title: "About this site"
+description: |
+  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## **Purpose:**
+
+This project is driven by the need to turn data into information that can be consumed by decision makers and make informed decisions. This data is obtained from Kaggle website it is a supporting evidence of the story I tell.
+
+## **Mission:**
+
+To examine this tourism data of Tanzania mainland and Zanzibar. Thereby, to explore hidden insights of this data and understand the association between variables, then train this data so as to predict future trend and finally tell a story.
+
+## **Objectives:**
+
+Three goals underlie this project:
+
+1.  **Exploratory data analysis – EDA**
+
+2.  **Building a machine learning algorithm to predict the future**
+
+3.  **To provide a story and specific recommendation.**

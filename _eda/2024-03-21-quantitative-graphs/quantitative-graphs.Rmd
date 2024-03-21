@@ -1,0 +1,291 @@
+---
+title: "Visualizing quantitative variables"
+description: |
+  This post shows distribution and relationship of quantitative variables.
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## EDA
+
+### Visualizing distribution of quantitative variables 
+Box plots, Histogram & Q-Q plot & Scatter plot
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+library(wesanderson)
+```
+
+
+```{r}
+setwd("D:\\setebe\\Data science\\2024\\Tourism\\learning-from-data")
+tz <- read.csv("Train.csv")
+```
+
+**Box plots**
+
+***Total female***
+```{r}
+ggplot(tz, aes(total_female)) + 
+  geom_boxplot() +
+  theme_bw() 
+
+```
+
+***Total male***
+```{r}
+ 
+ggplot(tz, aes(total_male)) + 
+  geom_boxplot() +
+  theme_bw() 
+```
+
+***Night spent in mainland***
+```{r}
+
+ggplot(tz, aes(night_mainland)) + 
+  geom_boxplot() +
+  theme_bw() 
+```
+
+***Night spent in Zanzibar***
+```{r}
+
+ggplot(tz, aes(night_zanzibar)) + 
+  geom_boxplot() +
+  theme_bw() 
+```
+
+**Histogram & Q-Q plot**
+
+***Total female***
+```{r}
+
+ggplot(tz, aes(total_female)) + 
+  geom_histogram(binwidth=3, fill="red", colour="black") +
+  ggtitle("This is Parametric distribution type weibull") +
+  theme_bw() 
+
+ggplot(tz, aes( sample = total_female))+ stat_qq()+ 
+  stat_qq_line()+ theme_bw() 
+```
+
+
+***Total male***
+```{r}
+ggplot(tz, aes(total_male)) + 
+  geom_histogram(binwidth=3, fill="red", colour="black") +
+  ggtitle("This is Parametric distribution type weibull") +
+  theme_bw() 
+
+ggplot(tz, aes( sample = total_male))+ stat_qq()+ 
+  stat_qq_line()+ theme_bw() 
+
+```
+
+
+***Night spent in mainland***
+```{r}
+ggplot(tz, aes(night_mainland)) + 
+  geom_histogram(binwidth=10, fill="red", colour="black") +
+  ggtitle("This is Parametric distribution type weibull") +
+  theme_bw() 
+
+ggplot(tz, aes( sample = night_mainland))+ stat_qq()+ 
+  stat_qq_line()+ theme_bw() 
+
+```
+
+***Night spent in Zanzibar***
+```{r}
+ggplot(tz, aes(night_zanzibar)) + 
+  geom_histogram(binwidth=10, fill="red", colour="black") +
+  ggtitle("This is Parametric distribution type weibull") +
+  theme_bw() 
+
+ggplot(tz, aes( sample = night_zanzibar))+ stat_qq()+ 
+  stat_qq_line()+ theme_bw() 
+```
+
+### Visualizing relationship of quantitative variables 
+
+**Scatter plot**
+
+***Total female vs Total male***
+```{r}
+
+ggplot(tz, aes(total_female, total_male)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, fullrange=TRUE,color = "red") +
+  labs(title = "Positive relationship",
+       subtitle = "", 
+       caption = "",
+       x = "Total female",
+       y = "Total male") +
+  theme_bw() +
+  theme(plot.title = element_text(color="black", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=10, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.title.y = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(1.2)))
+
+ 
+```
+
+
+***Total female vs night mainland***
+```{r}
+ggplot(tz, aes(total_female, night_mainland)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, fullrange=TRUE,color = "red") +
+  labs(title = "Positive relationship",
+       subtitle = "", 
+       caption = "",
+       x = "Total female",
+       y = "Night mainland") +
+  theme_bw() +
+  theme(plot.title = element_text(color="black", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=10, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.title.y = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(1.2)))
+
+```
+
+
+***Total male vs night mainland***
+```{r}
+ggplot(tz, aes(total_male, night_mainland)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, fullrange=TRUE,color = "red") +
+  labs(title = "Negative relationship",
+       subtitle = "", 
+       caption = "",
+       x = "Total male",
+       y = "Night mainland") +
+  theme_bw() +
+  theme(plot.title = element_text(color="black", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=10, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.title.y = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(1.2)))
+
+
+```
+
+
+***Total female vs night Zanzibar***
+```{r}
+ggplot(tz, aes(total_female, night_zanzibar)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, fullrange=TRUE,color = "red") +
+  labs(title = "Positive relationship",
+       subtitle = "", 
+       caption = "",
+       x = "Total female",
+       y = "Night Zanzibar") +
+  theme_bw() +
+  theme(plot.title = element_text(color="black", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=10, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.title.y = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(1.2)))
+
+```
+
+***Total male vs night Zanzibar*** 
+```{r}
+
+ggplot(tz, aes(total_female, night_zanzibar)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, fullrange=TRUE,color = "red") +
+  labs(title = "Postive relationship",
+       subtitle = "", 
+       caption = "",
+       x = "Total male",
+       y = "Night Zanzibar") +
+  theme_bw() +
+  theme(plot.title = element_text(color="black", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=10, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.title.y = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(1.2)))
+
+```
+
+
+***Night mainland vs night Zanzibar*** 
+```{r}
+
+ggplot(tz, aes(night_mainland, night_zanzibar)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, fullrange=TRUE,color = "red") +
+  labs(title = "Negative relationship",
+       subtitle = "", 
+       caption = "",
+       x = "Night mainland",
+       y = "Night Zanzibar") +
+  theme_bw() +
+  theme(plot.title = element_text(color="black", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=10, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.title.y = element_text(color="black", size=10, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(1.2)))
+
+```
+

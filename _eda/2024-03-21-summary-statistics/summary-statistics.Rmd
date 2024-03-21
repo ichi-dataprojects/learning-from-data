@@ -1,0 +1,76 @@
+---
+title: "Summary statistics"
+description: |
+ This post shows how the data is summarized using descriptive statistics
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+
+### Descriptive statistics - Exploring quantitative variables
+
+**Summary statistics**
+
+```{r}
+setwd("D:\\setebe\\Data science\\2024\\Tourism\\learning-from-data")
+tz <- read.csv("Train.csv")
+```
+
+
+```{r}
+attach(tz)
+```
+
+***Total female***
+```{r}
+summary(total_female)
+```
+
+
+***Total male***
+```{r}
+summary(total_male)
+```
+
+
+***Night mainland***
+```{r}
+summary(night_mainland)
+```
+
+***Night Zanzibar***
+```{r}
+summary(night_zanzibar)
+```
+
+
+### The five-number summary
+
+***Total female***
+```{r}
+quantile(total_female)
+```
+
+***Total male***
+```{r}
+quantile(total_male)
+```
+
+***Night mainland***
+```{r}
+quantile(night_mainland)
+```
+
+***Night Zanzibar***
+```{r}
+quantile(night_zanzibar)
+```
+

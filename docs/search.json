@@ -1,0 +1,43 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "author": [],
+      "contents": "\r\nPurpose:\r\nThis project is driven by the need to turn data into information that can be consumed by decision makers and make informed decisions. This data is obtained from Kaggle website it is a supporting evidence of the story I tell.\r\nMission:\r\nTo examine this tourism data of Tanzania mainland and Zanzibar. Thereby, to explore hidden insights of this data and understand the association between variables, then train this data so as to predict future trend and finally tell a story.\r\nObjectives:\r\nThree goals underlie this project:\r\nExploratory data analysis – EDA\r\nBuilding a machine learning algorithm to predict the future\r\nTo provide a story and specific recommendation.\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-03-21T20:42:48+03:00"
+    },
+    {
+      "path": "EDA.html",
+      "title": "Exploratory data analysis",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-03-21T20:42:50+03:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Tanzania tourism industry",
+      "description": "Welcome to the website. I hope you enjoy it!\n\nThis website contains a data science project conducted on tourism data set aiming to showcase the hidden information and knowledge from the data and tell you the story.\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-03-21T20:42:53+03:00"
+    },
+    {
+      "path": "Machine_learning.html",
+      "title": "Machine learning model",
+      "description": "This posts provides the model which stakeholders can use to predict future outcome\n",
+      "author": [],
+      "contents": "\r\nBuilding a multiple Linear Regression model\r\nwhereby\r\nNight mainland and night Zanzibar are the dependent variable to be modeled\r\nTotal male and Total female are independent variables\r\nThis the expected machine learning model or algorithm\r\n𝑦 =𝑤+𝑤𝑥 +𝑤𝑥 +𝑤𝑥 .……….wxn\r\nExploring relationships among features – the correlation matrix\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n               total_female  total_male night_mainland night_zanzibar\r\ntotal_female    1.000000000  0.37829005    0.006137388     0.09546342\r\ntotal_male      0.378290055  1.00000000   -0.033886407     0.01215726\r\nnight_mainland  0.006137388 -0.03388641    1.000000000    -0.09764510\r\nnight_zanzibar  0.095463421  0.01215726   -0.097645102     1.00000000\r\n\r\nNow lets Train the multiple linear regression model on the data\r\n\r\n\r\nCall:\r\nlm(formula = night_mainland ~ total_male + total_female + night_zanzibar, \r\n    data = tz)\r\n\r\nResiduals:\r\n   Min     1Q Median     3Q    Max \r\n-12.70  -6.48  -3.01   1.63 356.89 \r\n\r\nCoefficients:\r\n               Estimate Std. Error t value Pr(>|t|)    \r\n(Intercept)     9.94944    0.14457  68.821  < 2e-16 ***\r\ntotal_male     -0.47005    0.08240  -5.704 1.19e-08 ***\r\ntotal_female    0.35684    0.08645   4.128 3.68e-05 ***\r\nnight_zanzibar -0.26841    0.01967 -13.645  < 2e-16 ***\r\n---\r\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\r\n\r\nResidual standard error: 14.05 on 18502 degrees of freedom\r\nMultiple R-squared:  0.01151,   Adjusted R-squared:  0.01135 \r\nF-statistic: 71.84 on 3 and 18502 DF,  p-value: < 2.2e-16\r\n\r\n\r\nCoefficient\r\nStandard Error\r\nt-value\r\np-value\r\nR- square\r\nIntercept\r\n9.94944\r\n0.14457\r\n68.821\r\n< 2e-16 ***\r\n0.01135\r\ntotal_male\r\n-0.47005\r\n0.08240\r\n-5.704\r\n1.19e-08 ***\r\n\r\ntotal_female\r\n0.35684\r\n0.08645\r\n4.128\r\n3.68e-05 ***\r\n\r\nnight_Zanzibar\r\n-0.26841\r\n0.01967\r\n-13.645\r\n< 2e-16 ***\r\n\r\nMachine learning model for predicting future Night spent in Tanzania mainland will be\r\nNight mainland = -0.47005(total_male) + 0.35684(total_female) -0.26841(night_Zanzibar) + 9.94944\r\n\r\n\r\nCall:\r\nlm(formula = night_zanzibar ~ total_male + total_female + night_mainland, \r\n    data = tz)\r\n\r\nResiduals:\r\n    Min      1Q  Median      3Q     Max \r\n-25.708  -2.489  -2.123   1.660 237.015 \r\n\r\nCoefficients:\r\n               Estimate Std. Error t value Pr(>|t|)    \r\n(Intercept)     2.54493    0.05727  44.437  < 2e-16 ***\r\ntotal_male     -0.12526    0.03066  -4.086  4.4e-05 ***\r\ntotal_female    0.44038    0.03200  13.762  < 2e-16 ***\r\nnight_mainland -0.03712    0.00272 -13.645  < 2e-16 ***\r\n---\r\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\r\n\r\nResidual standard error: 5.224 on 18502 degrees of freedom\r\nMultiple R-squared:  0.01965,   Adjusted R-squared:  0.01949 \r\nF-statistic: 123.6 on 3 and 18502 DF,  p-value: < 2.2e-16\r\n\r\n\r\nCoefficient\r\nStandard Error\r\nt-value\r\np-value\r\nR- square\r\nIntercept\r\n2.54493\r\n0.05727\r\n44.437\r\n< 2e-16 ***\r\n0.01949\r\ntotal_male\r\n-0.12526\r\n0.03066\r\n-4.086\r\n4.4e-05 ***\r\n\r\ntotal_female\r\n0.44038\r\n0.03200\r\n13.762\r\n< 2e-16 ***\r\n\r\nnight_mainland\r\n-0.03712\r\n0.00272\r\n-13.645\r\n< 2e-16 ***\r\n\r\nMachine learning model for predicting future Night spent in Zanzibar will be\r\nNight Zanzibar = -0.12526(total_male) + 0.44038(total_female) -0.03712(night_Zanzibar) + 2.54493\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-03-21T20:42:57+03:00"
+    },
+    {
+      "path": "Story.html",
+      "title": "WHAT IS THE STORY",
+      "description": "This posts gives the main idea obtained after the analysis",
+      "author": [],
+      "contents": "\r\nThis data gives us the idea that both Tanzania mainland and Zanzibar tourism is a growing industry. The advantage is that Tanzania is a most fascinating tourism destination in the world, containing diverse attractions ranging from wildlife, beach, culture and historical events. Moreover, tourism in Tanzania has a highest potential multiplier effect which can provide direct and indirect jobs for Tanzanian citizens.\r\nHowever, several challenges underlie Tanzanian tourism industry which includes host community low awareness about tourism attractions, some domestic tour operators providing low quality services, hiring of many foreign workers because the natives lack crucial skills to serve tourists.\r\nDespite the challenges in Tanzanian tourism industry, it is not the end of the story in fact majority of stakeholders are doing everything in their power to support and improve the industry. For instance, the government is undertaking several actions like REGROW project (Resilient Natural Resource Management for Tourism and Growth) aiming to diversify tourism in the southern circuit, improving infrastructures for transport and accommodations in priority protected areas.\r\nMoreover, the private organizations are major supporters of the industry whereby they contribute to several attributes like training skilled tourism work force, protecting attractions such as wildlife populations in the protected areas. Too much effort is carried on by every stakeholder to ensure Tanzanian tourism industry success.\r\nTo survive competition in the tourism market there are two factors that needs more implementation efforts. These factors include advertising Tanzanian attraction through media to the world, To ensure complete training of Tanzanian citizens to host their own tourism industry.\r\nHer Excellency Samia Suluhu Hassan The president of the United Republic of TanzaniaHonourable Dr Hussein Mwinyi President of the Revolutionary Government of ZanzibarWe see efforts from the presidents aiming to boost the Tanzanian tourism industry through media advertisement\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-03-21T20:43:00+03:00"
+    }
+  ],
+  "collections": ["eda/eda.json"]
+}

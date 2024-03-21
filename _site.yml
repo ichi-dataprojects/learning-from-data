@@ -1,0 +1,19 @@
+name: "."
+title: "Learning from data"
+description: |
+  Learning from data
+output_dir: "docs"
+navbar:
+  right:
+    - text: "About"
+      href: about.html
+    - text: "Story"
+      href: Story.html
+    - text: "Machine learning"
+      href:  Machine_learning.html
+    - text: "Analysis"
+      menu: 
+        - text: "Exploratory data analysis"
+          href:  EDA.html
+        
+output: distill::distill_article

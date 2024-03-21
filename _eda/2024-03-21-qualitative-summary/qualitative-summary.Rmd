@@ -1,0 +1,430 @@
+---
+title: "Visualizing qualitative variables"
+description: |
+  This post shows summary of categorical values.
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+library(wesanderson)
+```
+
+
+```{r}
+setwd("D:\\setebe\\Data science\\2024\\Tourism\\learning-from-data")
+tz <- read.csv("Train.csv")
+attach(tz)
+
+```
+
+
+### Displaying amounts
+
+***country***
+```{r}
+table(country)
+```
+
+***continent***
+```{r}
+table(continent)
+```
+
+***age_group***
+```{r}
+table(age_group)
+```
+
+***travel_with***
+```{r}
+table(travel_with)
+```
+
+
+***purpose***
+```{r}
+table(purpose)
+```
+
+
+***main_activity***
+```{r}
+table(main_activity)
+```
+
+
+***info_source***
+```{r}
+table(info_source)
+```
+
+
+***tour_arrangement***
+```{r}
+table(tour_arrangement)
+```
+
+
+***cost_category***
+```{r}
+table(cost_category)
+```
+
+
+### Visualizing percentage
+
+```{r}
+## preparing percentage data frame from the data set
+
+
+df1 <- data.frame( age = c("<18", "18-24", "25-44","45-64","65+"),
+                   pa=c(0.66, 12, 48.9, 30.5, 7.9))
+
+df2 <- data.frame(cont <- c("Africa","Asia","Australia",
+                            "Europe","N. America",
+                                 "S. America"),
+                  pcont <- c(23,8,4,45,19,0.64))
+
+df3 <- data.frame(tw <- c("Alone"," With children",
+                          "Friends/Relatives","Spouce",
+                          "Spouse and Children"),
+                  ptw <-c(45,5,18,26,6))
+df4 <- data.frame(po <- c("Business","Leisure and Holidays",
+                          "Medical","Meetings and Conference",
+                          "Other","Scientific and Academic",
+                          "Visiting Friends and Relatives",
+                          "Volunteering"),
+                  ppo<-c(12,64,0.05,6,2,1,12.5,2.4))
+
+df5 <- data.frame( ma <-c("Beach Tourism","Bird Tourism",
+                          "Business","Conference Tourism",
+                          "Cultural Tourism",
+                          "Diving and Sport Fishing",
+                          "Hunting Tourism",
+                          "Mountain Climbing","Wildlife Tourism"),
+                   pma <- c(23,2.1,1.5,10,16,11,13,11,12))
+
+df6 <- data.frame( info <- c("Friends/relatives",
+    "Inflight magazines","Brochures","Others","Radio/TV/Web",
+    "Tanzania Mission Abroad","Trade fair",
+    "Travel agent/tour operator"),
+                   pinfo <- c(33,0.5,7,7.4,6.6,1,1.3,43))
+
+df14 <- data.frame(fttz<- c("No","Yes"),
+                   pfttz <- c(31.1,69))
+ 
+df15 <- data.frame( cc <- c("High Cost","Higher Cost","Highest Cost","Low Cost","Lower Cost","Normal Cost"),
+                    pcc<-c(19.9,26.3,1.9,8.5,13.9,29.6))
+
+df16 <- data.frame( ta <- c("Independent Tour","Package Tour"),
+                    pta<-c(49.8,50.2))
+```
+
+
+***Continent percent***
+```{r}
+
+ggplot(df2, aes(cont,pcont)) + geom_bar(stat = "identity", 
+                      width = 0.7,fill="steelblue") + 
+  labs(title = "Tanzanian tourism industry receives most of European tourists",
+       subtitle = "Tourism regulators must plan to tap other continents contributions",
+       caption = "Figure 1:      
+       Data source Kaggle website",
+       x = "Continent", 
+       y = "Total  100%") +
+  geom_text(aes(label=pcont),vjust= -0.3,size=3.5)+
+  theme_hc() + 
+  theme( plot.title = element_text(color="steelblue", size=12, 
+                                   face="bold",hjust=0),
+         plot.subtitle = element_text(color="black", size=10, 
+                                      face="bold.italic"),
+         plot.caption = element_text(size=9, color="black", 
+                                     face="italic",hjust=0.1),
+         axis.title.x = element_text(color="black", size=9, 
+                                     face="bold"),
+         axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                     color="black", size=9, 
+                                     face="bold"),
+         axis.text.x = element_text(hjust= 0.5, 
+                                    vjust= 0.8, colour="black", 
+                                    size=rel(0.9)), 
+     axis.ticks.y = element_blank(),axis.text.y = element_blank()) 
+
+
+```
+
+
+
+***Age group percent***
+```{r}
+
+ggplot(df1, aes(age,pa)) + geom_bar(stat = "identity", 
+                width = 0.7,fill="steelblue") + 
+  labs(title = "By contrast,middle working age group travel more", 
+       subtitle = "Investing much on youth infrustructures is prior to attracting them",
+       caption = "Figure 2:      
+       Data source Kaggle website",
+       x = "The age group of tourists", 
+       y = "Total  100%") +
+  geom_text(aes(label=pa),vjust=-0.3,size=3.5)+
+  theme_hc() + 
+  theme(plot.title = element_text(color="steelblue", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(0.9)), 
+        axis.ticks.y = element_blank(),axis.text.y = element_blank()) 
+
+```
+
+
+
+***Travel with percent***
+```{r}
+
+ggplot(df3, aes(tw,ptw)) + geom_bar(stat = "identity", 
+                width = 0.7,fill="steelblue") + 
+  labs(title = "Many tourits travel alone or with spouces", 
+       subtitle = "We recommend promoting familiy visitations",
+       caption = "Figure 3:      
+       Data source Kaggle website",
+       x = "Travel companions", 
+       y = "Total  100%") +
+  geom_text(aes(label=ptw),vjust=-0.3,size=3.5)+
+  theme_hc() + 
+  theme(plot.title = element_text(color="steelblue", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(0.9)), 
+        axis.ticks.y = element_blank(),axis.text.y = element_blank()) 
+
+```
+
+
+
+***Purpose of visiting percent***
+```{r}
+# purpose of visiting percent
+ggplot(df4, aes(po,ppo)) + geom_bar(stat = "identity", 
+                  width = 0.7,fill="steelblue") + 
+  labs(title = "Generally recreation is main push factor for safari",
+       subtitle = "A call for tourism regulators to sustain available packages for lesisure and holiday activities",
+       caption = "Figure 4:      
+       Data source Kaggle website",
+       x = "Reason", 
+       y = "Total  100%") +
+  geom_text(aes(label=ppo),vjust=-0.1,hjust=0.69,size=3.5)+
+  theme_minimal() + 
+  theme(plot.title = element_text(color="steelblue", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(angle = 90,hjust= 0.2, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(0.9)), 
+        axis.ticks.y = element_blank(),axis.text.y = element_blank()) 
+
+```
+
+
+
+***Main activity percent***
+```{r}
+
+ggplot(df5, aes(ma,pma)) + geom_bar(stat = "identity",
+           width =0.7,fill="steelblue") + 
+  labs(title = "Beach tourism is a rising form of tourism",
+       subtitle = "Tourism regulators to invest in improving beach tourism",
+       caption = "Figure 5:      
+       Data source Kaggle website",
+       x = "Tourism activities", 
+       y = "Total  100%") +
+  geom_text(aes(label=pma),vjust=-0.1,hjust=0.69,size=3.5)+
+  theme_hc() + 
+  theme(plot.title = element_text(color="steelblue", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(angle = 90,hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(0.9)), 
+        axis.ticks.y = element_blank(),axis.text.y = element_blank())  
+
+```
+
+
+
+***Info source percent***
+```{r}
+
+ggplot(df6, aes(info,pinfo)) + geom_bar(stat = "identity",
+               width =0.7,fill="steelblue") + 
+  labs(title = "Success of providing quality tourism services", 
+       subtitle = "Recommends to form more platforms of advertising our tourism products",
+       caption = "Figure 6:      
+       Data source Kaggle website",
+       x = "Information source", 
+       y = "Total  100%") +
+  geom_text(aes(label=pinfo),vjust=-0.1,hjust=0.69,size=3.5)+
+  theme_hc() + 
+  theme(plot.title = element_text(color="steelblue", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(angle = 90,hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(0.9)), 
+        axis.ticks.y = element_blank(),axis.text.y = element_blank()) 
+
+```
+
+
+
+***First_trip_tz percent***
+```{r}
+
+ggplot(df14, aes(fttz,pfttz)) + geom_bar(stat = "identity",
+       width =0.5,fill="steelblue") + 
+  labs(title = "There is a significant trend for newcomers visits", 
+       subtitle = " Facilitating returning trips is crucial for our tourism industry",
+       caption = "Figure 7:      
+       Data source Kaggle website",
+       x = "First arrival", 
+       y = "Total  100%") +
+  geom_text(aes(label=pfttz),vjust=-0.3,size=3.5)+
+  theme_hc() + 
+  theme(plot.title = element_text(color="steelblue", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(0.9)), 
+        axis.ticks.y = element_blank(),axis.text.y = element_blank()) 
+
+```
+
+
+
+***Cost_category percent***
+```{r}
+
+ggplot(df15, aes(cc,pcc)) + geom_bar(stat = "identity",
+              width =0.5,fill="steelblue") + 
+  labs(title = "Tourits debate on the cost of Tanzanian tourism expenses", 
+       subtitle = "Touring regulators should promote affordable tourism costs",
+       caption = "Figure 8:      
+       Data source Kaggle website", 
+       x = "Cost category",
+       y = "Total  100%") +
+  geom_text(aes(label=pcc),vjust=-0.3,size=3.5)+
+  theme_hc() + 
+  theme(plot.title = element_text(color="steelblue", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(0.9)), 
+        axis.ticks.y = element_blank(),axis.text.y = element_blank()) 
+
+```
+
+
+
+***Tour arrangement percent***
+```{r}
+
+ggplot(df16, aes(ta,pta)) + geom_bar(stat = "identity",
+         width =0.5,fill="steelblue") + 
+  labs(title = "How is tourists Satisfaction rate between Package and Independent tour", 
+       subtitle = "Obligation of Tour operators and travel agents to learn new service techiques ",
+       caption = "Figure 9:      
+       Data source Kaggle website",
+       x = "Tour arrangement", 
+       y = "Total  100%") +
+  geom_text(aes(label=pta),vjust=-0.3,size=3.5)+
+  theme_hc() + 
+  theme(plot.title = element_text(color="steelblue", size=11, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=7, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.5, 
+                                   vjust= 0.8, colour="black", 
+                                   size=rel(0.9)), 
+        axis.ticks.y = element_blank(),axis.text.y = element_blank()) 
+
+```
+

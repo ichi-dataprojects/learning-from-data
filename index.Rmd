@@ -1,0 +1,16 @@
+---
+title: "Tanzania tourism industry"
+description: |
+  Welcome to the website. I hope you enjoy it!
+  
+  This website contains a data science project conducted on tourism data set aiming to showcase the hidden information and knowledge from the data and tell you the story.
+
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+![](tztourism.jpg){width="400"}

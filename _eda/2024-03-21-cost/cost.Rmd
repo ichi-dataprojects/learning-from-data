@@ -1,0 +1,398 @@
+---
+title: "Cost category"
+description: |
+  This post shows how tourists view the tourism costs at Tanzania mainland and Zanzibar.
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+library(wesanderson)
+setwd("D:\\setebe\\Data science\\2024\\Tourism\\learning-from-data")
+tz <- read.csv("Train.csv")
+attach(tz)
+```
+
+***Continent vs total_male + cost category***
+```{r}
+ggplot(tz, aes(continent,total_male,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("red", "gray4",
+                               "gray66", "gray77",
+                               "gray80", "gray90")) +
+  labs(title = "Male tourists perspective about tourism costs",
+       subtitle = "", 
+       caption = "Figure 10:      
+       Data source Kaggle website",
+       x = "Continet",
+       y = "Total number of males",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=13, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= -0.1,  
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) + 
+  coord_flip()
+
+```
+
+***Continent vs total female + cost category***
+```{r}
+
+ggplot(tz, aes(continent,total_female,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("violetred4", "gray70",
+                               "gray80", "gray85",
+                               "gray91", "gray95")) +
+  labs(title = "Female tourists perspective on tourism costs",
+       subtitle = "", 
+       caption = "Figure 16:      
+       Data source Kaggle website",
+       x = "Continent",
+       y = "Total number of females",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=14, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 1, 
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) + 
+  coord_flip()
+
+```
+
+***Continent vs night_Zanzibar  + cost category***
+```{r}
+ggplot(tz, aes(continent,night_zanzibar,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("gray50", "gray4",
+                               "gray60", "gray70",
+                               "gray80", "violetred4")) +
+  labs(title = "Most continents votes for Higher and Normal cost",
+       subtitle = "Tourism regulators need to  reduce costs in Zanzibar", 
+       caption = "Figure 22:      
+       Data source Kaggle website",
+       x = "Continent",
+       y = "Nights spent in Zanzibar",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=14, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 1, 
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) + 
+  coord_flip()
+
+```
+
+***Continent vs night_mainland  + cost category***
+```{r}
+
+ggplot(tz, aes(continent,night_mainland,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("gray40", "gray5",
+                               "gray60", "gray70",
+                               "gray80", "violetred4")) +
+  labs(title = "Tourits perspective on Tanzania mainland tour Costs",
+       subtitle = " Tourism regulators should form affordable prices", 
+       caption = "Figure 28:      
+       Data source Kaggle website",
+       x = "Continent",
+       y = "Nights spent in Tanzania mainland",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=13, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 1, 
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) + 
+  coord_flip()
+
+```
+
+***Age_group vs total male + cost category***
+```{r}
+
+
+ggplot(tz, aes(age_group,total_male,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("red", "gray4",
+                               "gray60", "gray70",
+                               "gray80", "gray90")) +
+  labs(title = "Male tourists say high and higher costs",
+       subtitle = "Maybe because they pay the bills", 
+       caption = "Figure 34:      
+       Data source Kaggle website",
+       x = "Age group",
+       y = "Total number of males",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=14, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.6, 
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) 
+
+```
+
+***Age_group vs night_Zanzibar  + cost category***
+```{r}
+
+ggplot(tz, aes(age_group,night_zanzibar,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("gray50", "gray4",
+                               "gray60", "gray70",
+                               "gray80", "violetred4")) +
+  labs(title = "Most age group say high and normal cost",
+       subtitle = "A need to research on reasonable costs ", 
+       caption = "Figure 46:      
+       Data source Kaggle website",
+       x = "Age group",
+       y = "Nights spent in Zanzibar",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=14, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.6, 
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) 
+
+```
+
+***Age_group vs night_mainland  + cost category***
+```{r}
+
+ggplot(tz, aes(age_group,night_mainland,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("gray40", "gray5",
+                               "gray60", "gray70",
+                               "gray80", "violetred4")) +
+  labs(title = "Majority of age group say Higher and normal cost",
+       subtitle = "Many factors leads to alternating tourism costs", 
+       caption = "Figure 52:      
+       Data source Kaggle website",
+       x = "Age group",
+       y = "Nights spent in Tanzania mainland",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=12, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 0.6, 
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) 
+
+```
+
+***Main activity vs total male + cost category***
+```{r}
+
+
+ggplot(tz, aes(main_activity,total_male,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("red", "gray4",
+                               "gray60", "gray70",
+                               "gray80", "gray90")) +
+  labs(title = "Male tourists say higher and high costs",
+       subtitle = "Perhaps males pay the bills", 
+       caption = "Figure 58:      
+       Data source Kaggle website",
+       x = "Tourism activities",
+       y = "Total number of males",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=14, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 1, 
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) + 
+  coord_flip()
+
+```
+
+
+***Main activity vs total female + cost category***
+```{r}
+
+ggplot(tz, aes(main_activity,total_female,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("violetred4", "gray70",
+                               "gray80", "gray85",
+                               "gray91", "gray95")) +
+  labs(title = "Female tourists say wildlife tourism is high cost",
+       subtitle = "Research is needed about tourism costs ", 
+       caption = "Figure 68:      
+       Data source Kaggle website",
+       x = "Tourism activities",
+       y = "Total number of females",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=10, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=8, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 1, 
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) + 
+  coord_flip()
+
+```
+
+
+***Main activity vs night_Zanzibar  + cost category***
+```{r}
+
+ggplot(tz, aes(main_activity,night_zanzibar,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("gray50", "gray4",
+                               "gray60", "gray70",
+                               "gray80", "violetred4")) +
+  labs(title = "Tourists in Zanznibar say the cost is normal and higher",
+       subtitle = "Higher cost is the most highlighted", 
+       caption = "Figure 74:      
+       Data source Kaggle website",
+       x = "Tourism activities",
+       y = "Nights spent in Zanzibar",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=13, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=10, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 1, 
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) + 
+  coord_flip()
+
+```
+
+***Main activity vs night_mainland  + cost category***
+```{r}
+
+ggplot(tz, aes(main_activity,night_mainland,fill=cost_category)) +
+  geom_bar(stat = "identity",position = "dodge") + 
+  scale_fill_manual(values = c("gray40", "gray5",
+                               "gray60", "gray70",
+                               "gray80", "violetred4")) +
+  labs(title = "Many tourists say high costs of Tanzanian tourism", 
+       subtitle = "Touring regulators should promote affordable tourism costs", 
+       caption = "Figure 80:      
+       Data source Kaggle website",
+       x = "Tourism activities",
+       y = "Nights spent in Tanzania mainland",
+       fill="Expenditure") +
+  theme_hc() +
+  theme(plot.title = element_text(color="steelblue", size=11, 
+                                  face="bold",hjust=0),
+        plot.subtitle = element_text(color="black", size=9, 
+                                     face="bold.italic"),
+        plot.caption = element_text(size=9, color="black", 
+                                    face="italic",hjust=0.1),
+        axis.title.x = element_text(color="black", size=9, 
+                                    face="bold"),
+        axis.title.y = element_text(angle = 360, vjust = 0.5,
+                                    color="black", size=9, 
+                                    face="bold"),
+        axis.text.x = element_text(hjust= 1, 
+                                   vjust= 1, colour="black", 
+                                   size=rel(0.9))) + 
+  coord_flip()
+
+
+```
+
